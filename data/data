@@ -1,0 +1,47 @@
+const Person = require("./model/person");
+
+const createPerson = async() =>{
+    const person = await Person.create( {
+        name: 'Fatma',
+        age:23,
+        favoriteFoods:["Spaghetti","Chicken Wings"]
+    });
+    try{
+        const result=await person.save();
+        console.log(result);
+    }
+    catch(err){
+        console.log(err.message)
+    }
+
+};
+
+// Create Many Records with model.create()
+const createPersons= async (persons) => {
+    try {
+      const result = await Person.create(persons);
+      console.log(result);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  createPersons([
+    {
+      name: "Arbi",
+      age: 32,
+      favoriteFoods: ["Burger","Lasagna"],
+    },
+    {
+      name: "Mouhamed",
+      age: 33,
+      favoriteFoods: ["Meat","Rice"],
+    },
+    {
+      name: "Samia",
+      age: 57,
+      favoriteFoods: ["Couscous","Shrimp"],
+    },
+  ]);
+
+
+module.exports={createPerson,createPersons};
